@@ -1,6 +1,7 @@
 'use strict';
 
 import iziToast from 'izitoast';
+import 'flatpickr/dist/flatpickr.min.css';
 
 const form = document.querySelector('.form');
 let userData = {};
@@ -29,7 +30,7 @@ const makePromise = ({ delay, state }) => {
       if (state === 'fulfilled') {
         resolve(delay);
       }
-      reject(delay);
+      return reject(delay);
     }, delay);
   });
 };

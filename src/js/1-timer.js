@@ -1,6 +1,8 @@
 'use strict';
 import flatpickr from 'flatpickr';
 import iziToast from 'izitoast';
+import 'flatpickr/dist/flatpickr.min.css';
+import 'izitoast/dist/css/iziToast.min.css';
 
 const pickrTime = document.querySelector('#datetime-picker');
 
@@ -27,9 +29,10 @@ const options = {
         icon: '',
         message: 'Please choose a date in the future',
       });
+      button.disabled = true;
+    } else {
+      button.disabled = false;
     }
-    button.disabled = false;
-    button.addEventListener('click', () => changeDateInTimer());
   },
 };
 
@@ -42,6 +45,8 @@ function getZero(num) {
     return num;
   }
 }
+
+button.addEventListener('click', () => changeDateInTimer());
 
 function changeDateInTimer() {
   let timer = setInterval(() => {

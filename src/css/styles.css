@@ -4,8 +4,7 @@
   | default @import url()
   |============================
 */
-@import 'flatpickr/dist/flatpickr.min.css';
-@import 'izitoast/dist/css/iziToast.min.css';
+
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -20,12 +19,4 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-}
-
-.btn-disable {
-  cursor: not-allowed;
-  pointer-events: none;
-
-  color: #c0c0c0;
-  background-color: #ffffff;
 }
