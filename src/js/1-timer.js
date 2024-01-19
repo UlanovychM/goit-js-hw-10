@@ -3,8 +3,17 @@ import flatpickr from 'flatpickr';
 import iziToast from 'izitoast';
 
 const pickrTime = document.querySelector('#datetime-picker');
-const button = document.querySelector('#data-start');
-let userSelectedDate;
+
+const button = document.querySelector('button[data-start]');
+
+const dataTimerValue = {
+  days: document.querySelector('[data-days]'),
+  hours: document.querySelector('[data-hours]'),
+  minutes: document.querySelector('[data-minutes]'),
+  seconds: document.querySelector('[data-seconds]'),
+};
+
+button.disabled = true;
 
 const options = {
   enableTime: true,
@@ -12,20 +21,46 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    if (selectedDates <= this.defaultDate) {
+    if (selectedDates[0] <= new Date()) {
       iziToast.error({
         position: 'topRight',
         icon: '',
         message: 'Please choose a date in the future',
       });
     }
+    button.disabled = false;
+    button.addEventListener('click', () => changeDateInTimer());
   },
 };
 
 flatpickr(pickrTime, options);
 
-// options.onClose(userSelectedDate);
-console.log(options.onClose(userSelectedDate));
+function getZero(num) {
+  if (num >= 0 && num < 10) {
+    return `0${num}`;
+  } else {
+    return num;
+  }
+}
+
+function changeDateInTimer() {
+  let timer = setInterval(() => {
+    let countdown = new Date(pickrTime.value) - new Date();
+    button.disabled = true;
+    pickrTime.disabled = true;
+
+    let timerData = convertMs(countdown);
+
+    dataTimerValue.days.textContent = getZero(timerData.days);
+    dataTimerValue.hours.textContent = getZero(timerData.hours);
+    dataTimerValue.minutes.textContent = getZero(timerData.minutes);
+    dataTimerValue.seconds.textContent = getZero(timerData.seconds);
+
+    if (countdown <= 0) {
+      clearInterval(timer);
+    }
+  }, 1000);
+}
 
 function convertMs(ms) {
   const second = 1000;
@@ -44,22 +79,3 @@ function convertMs(ms) {
 
   return { days, hours, minutes, seconds };
 }
-
-// button.addEventListener('click', e => {
-//   console.log(options.onClose(e.target));
-// });
-
-function getZero(num) {
-  if (num >= 0 && num < 10) {
-    return `0${num}`;
-  } else {
-    return num;
-  }
-}
-
-const changeDateInTimer = () => {
-  const days = document.querySelector('#data-days');
-  const hours = document.querySelector('#data-hours');
-  const minutes = document.querySelector('#data-minutes');
-  const seconds = document.querySelector('#data-seconds');
-};
