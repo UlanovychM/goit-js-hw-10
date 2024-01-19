@@ -40,11 +40,17 @@ form.addEventListener('submit', e => {
   makePromise(userData)
     .then(delay =>
       iziToast.success({
+        position: 'topRight',
+        icon: '',
         message: `✅ Fulfilled promise in ${delay}ms`,
       })
     )
     .catch(delay =>
-      iziToast.error({ message: `❌ Rejected promise in ${delay}ms` })
+      iziToast.error({
+        position: 'topRight',
+        icon: '',
+        message: `❌ Rejected promise in ${delay}ms`,
+      })
     );
 
   localStorage.removeItem(localStorageKey);

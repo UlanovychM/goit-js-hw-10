@@ -13,17 +13,19 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     if (selectedDates <= this.defaultDate) {
-      window.alert('Please choose a date in the future');
+      iziToast.error({
+        position: 'topRight',
+        icon: '',
+        message: 'Please choose a date in the future',
+      });
     }
-    selectedDates[0];
-
-    // button.classList.add('btn-disable');
   },
 };
 
-console.log(options.onClose(userSelectedDate));
-
 flatpickr(pickrTime, options);
+
+// options.onClose(userSelectedDate);
+console.log(options.onClose(userSelectedDate));
 
 function convertMs(ms) {
   const second = 1000;
