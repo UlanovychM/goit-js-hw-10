@@ -38,7 +38,7 @@ const options = {
 
 flatpickr(pickrTime, options);
 
-function getZero(num) {
+function addLeadingZero(num) {
   if (num >= 0 && num < 10) {
     return `0${num}`;
   } else {
@@ -52,16 +52,16 @@ function changeDateInTimer() {
   let timer = setInterval(() => {
     let countdown = new Date(pickrTime.value) - new Date();
     button.disabled = true;
-    pickrTime.disabled = true;
+    if (countdown >= 0) {
+      let timerData = convertMs(countdown);
 
-    let timerData = convertMs(countdown);
+      const { days, hours, minutes, seconds } = dataTimerValue;
 
-    dataTimerValue.days.textContent = getZero(timerData.days);
-    dataTimerValue.hours.textContent = getZero(timerData.hours);
-    dataTimerValue.minutes.textContent = getZero(timerData.minutes);
-    dataTimerValue.seconds.textContent = getZero(timerData.seconds);
-
-    if (countdown <= 0) {
+      days.textContent = addLeadingZero(timerData.days);
+      hours.textContent = addLeadingZero(timerData.hours);
+      minutes.textContent = addLeadingZero(timerData.minutes);
+      seconds.textContent = addLeadingZero(timerData.seconds);
+    } else {
       clearInterval(timer);
     }
   }, 1000);
