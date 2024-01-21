@@ -4,16 +4,8 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 const form = document.querySelector('.form');
-let userData = {};
 
-form.addEventListener('input', e => {
-  if (e.target.value !== '' && e.target.value !== null) {
-    userData[e.target.name] = e.target.value.trim();
-  }
-  return;
-});
-
-const makePromise = ({ delay, state }) => {
+const makePromise = (delay, state) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (state === 'fulfilled') {
@@ -28,7 +20,10 @@ const makePromise = ({ delay, state }) => {
 form.addEventListener('submit', e => {
   e.preventDefault();
 
-  makePromise(userData)
+  const delay = form.elements.delay.value;
+  const state = form.elements.state.value;
+
+  makePromise(delay, state)
     .then(delay =>
       iziToast.success({
         position: 'topRight',
