@@ -50,9 +50,10 @@ button.addEventListener('click', () => changeDateInTimer());
 
 function changeDateInTimer() {
   const { days, hours, minutes, seconds } = dataTimerValue;
+
   let timer = setInterval(() => {
     let countdown = new Date(pickrTime.value) - new Date();
-    button.disabled = true;
+
     if (countdown >= 0) {
       let timerData = convertMs(countdown);
 
