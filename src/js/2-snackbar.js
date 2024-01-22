@@ -20,14 +20,14 @@ const makePromise = (delay, state) => {
 form.addEventListener('submit', e => {
   e.preventDefault();
 
-  const delay = form.elements.delay.value;
-  const state = form.elements.state.value;
+  const delay = Number(form.elements.delay.value);
+  const state = e.target.elements.state.value; // якщо знову не правильно піскажіть будь ласка як зробити, бо честно кажучи в мене вже ідей
 
   makePromise(delay, state)
     .then(delay =>
       iziToast.success({
         position: 'topRight',
-        icon: '',
+        icon: '', // Якщо я тут не залишу пусту строчку то воно підтягне власну іконку прописану за замовчуванням 
         message: `✅ Fulfilled promise in ${delay}ms`,
       })
     )

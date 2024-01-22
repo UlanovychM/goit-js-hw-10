@@ -53,9 +53,9 @@ function changeDateInTimer() {
 
   let timer = setInterval(() => {
     let countdown = new Date(pickrTime.value) - new Date();
-
+    button.disabled = true;
     if (countdown >= 0) {
-      let timerData = convertMs(countdown);
+      let timerData = convertMs(countdown); //  функцію convertMs використовується тут
 
       days.textContent = addLeadingZero(timerData.days);
       hours.textContent = addLeadingZero(timerData.hours);
