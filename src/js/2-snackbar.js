@@ -21,7 +21,7 @@ form.addEventListener('submit', e => {
   e.preventDefault();
 
   const delay = Number(form.elements.delay.value);
-  const state = e.target.elements.state.value; // якщо знову не правильно піскажіть будь ласка як зробити, бо честно кажучи в мене вже ідей
+  const state = e.target.elements.state.value; // якщо знову не правильно піскажіть будь ласка як зробити, бо честно кажучи в мене вже ідей 0
 
   makePromise(delay, state)
     .then(delay =>
