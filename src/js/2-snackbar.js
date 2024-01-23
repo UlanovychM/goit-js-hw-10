@@ -27,7 +27,7 @@ form.addEventListener('submit', e => {
     .then(delay =>
       iziToast.success({
         position: 'topRight',
-        icon: '', // Якщо я тут не залишу пусту строчку то воно підтягне власну іконку прописану за замовчуванням 
+        icon: '', // Якщо я тут не залишу пусту строчку то воно підтягне власну іконку прописану за замовчуванням
         message: `✅ Fulfilled promise in ${delay}ms`,
       })
     )
